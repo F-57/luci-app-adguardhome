@@ -1,4 +1,7 @@
 #/cgi-bin/luci/admin/services/AdGuardHome
+msgid "AdGuard Home"
+msgstr "图形DNS"
+
 msgid "Base Setting"
 msgstr "基础设置"
 
