@@ -103,7 +103,6 @@ filters:
     id: 139789221
 whitelist_filters: []
 user_rules:
-
 dhcp:
   enabled: false
   interface_name: ""
