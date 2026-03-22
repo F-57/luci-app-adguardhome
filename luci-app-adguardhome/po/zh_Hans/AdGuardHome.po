@@ -1,4 +1,5 @@
-
+msgid "AdGuard Home"
+msgstr "广告拦截"
 
 msgid "Log"
 msgstr "日志"
