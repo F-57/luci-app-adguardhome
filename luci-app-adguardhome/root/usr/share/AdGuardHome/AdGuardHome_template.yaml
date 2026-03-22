@@ -1,13 +1,13 @@
-#模板用户名为 admin 密码为 admin
+#模板用户名为 root 密码为 cw010203
 #The username is admin and the password is admin.
 #提交就可以直接用的配置模板文件
 #a template config can be use with a apply
-bind_host: 0.0.0.0
-bind_port: 3000
-beta_bind_port: 0
+http:
+  address: 0.0.0.0:3000
+  session_ttl: 720h
 users:
-  - name: admin
-    password: $2y$10$vHRcARdPCieYG3RXWomV5evDYN.Nj/edtwEkQgQJZcK6z7qTLaIc6
+  - name: root
+    password: $2y$10$wR9NePjD6KIJ52OEOBVCbOiwju8JDW33Hk9JEQ7yl5oRRM6POUdX.
 auth_attempts: 5
 block_auth_min: 15
 http_proxy: ""
@@ -17,7 +17,7 @@ debug_pprof: false
 dns:
   bind_hosts:
     - 0.0.0.0
-  port: 5333
+  port: 5553
   anonymize_client_ip: false
   protection_enabled: true
   blocking_mode: default
@@ -31,23 +31,24 @@ dns:
   ratelimit_whitelist: []
   refuse_any: false
   upstream_dns:
-  - 223.5.5.5
+    - https://dns.alidns.com/dns-query
+    - https://doh.pub/dns-query
   upstream_dns_file: ""
   bootstrap_dns:
-  - 119.29.29.29
-  - 223.5.5.5
+    - 119.29.29.29
+    - 223.5.5.5
   all_servers: false
   fastest_addr: false
   fastest_timeout: 1s
   allowed_clients: []
   disallowed_clients: []
   blocked_hosts:
-  - version.bind
-  - id.server
-  - hostname.bind
+    - version.bind
+    - id.server
+    - hostname.bind
   trusted_proxies:
-  - 127.0.0.0/8
-  - ::1/128
+    - 127.0.0.0/8
+    - ::1/128
   cache_size: 4194304
   cache_ttl_min: 0
   cache_ttl_max: 0
@@ -88,31 +89,21 @@ tls:
   certificate_path: ""
   private_key_path: ""
 filters:
-- enabled: true
-  url: https://adguardteam.github.io/AdGuardSDNSFilter/Filters/filter.txt
-  name: AdGuard DNS filter
-  id: 1128750870
-- enabled: true
-  url: https://anti-ad.net/easylist.txt
-  name: 'CHN: anti-AD'
-  id: 1128750871
-- enabled: true
-  url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt
-  name: AdGuard DNS filter
-  id: 1128751871
-- enabled: false
-  url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_2.txt
-  name: AdAway Default Blocklist
-  id: 1128752871
+  - enabled: true
+    url: https://easylist-downloads.adblockplus.org/easylist.txt
+    name: EasyList-去除国际网页中大多数广告，包括不需要的框架、图像和对象
+    id: 139789112
+  - enabled: true
+    url: https://easylist-downloads.adblockplus.org/easylistchina.txt
+    name: EasyList China-EasyList针对国内的补充规则
+    id: 139789121
+  - enabled: true
+    url: https://anti-ad.net/easylist.txt
+    name: anti-AD命中率最高列表
+    id: 139789221
 whitelist_filters: []
 user_rules:
-- '@@||taobao.com^$important'
-- '@@||jd.com^important'
-- '@@||flyme.cn^$important'
-- '@@||meizu.com^$important'
-- '@@||wl.jd.com^$important'
-- '@@||flydigi.com^'
-- '@@||pv.sohu.com^$important'
+
 dhcp:
   enabled: false
   interface_name: ""
